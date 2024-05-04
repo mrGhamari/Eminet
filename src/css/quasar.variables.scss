@@ -1,0 +1,44 @@
+$primary: #FF79AC;
+$secondary: #26A69A;
+$accent: #9C27B0;
+
+$dark: #1D1D1D;
+$dark-page: #121212;
+
+$positive: #21BA45;
+$negative: #C10015;
+$info: #31CCEC;
+$warning: #F2C037;
+
+//* ------ Space Settings ------
+$space-base: 16px !default;
+$space-x-base: $space-base !default;
+$space-y-base: $space-base !default;
+
+$space-none: (x: 0, y: 0) !default;
+$space-xs: (x: ($space-x-base * .25), y: ($space-y-base * .25)) !default;
+$space-sm: (x: ($space-x-base * .5), y: ($space-y-base * .5)) !default;
+$space-md: (x: $space-x-base, y: $space-y-base) !default;
+$space-lg: (x: ($space-x-base * 1.5), y: ($space-y-base * 1.5)) !default;
+$space-xl: (x: ($space-x-base * 2), y: ($space-y-base * 2)) !default;
+$space-xxl: (x: ($space-x-base * 3), y: ($space-y-base * 3)) !default;
+$spaces: ('none': $space-none,
+  'xs': $space-xs,
+  'sm': $space-sm,
+  'md': $space-md,
+  'lg': $space-lg,
+  'xl': $space-xl,
+  'xxl': $space-xxl) !default;
+
+//* ------ Radius Settings ------
+$generic-border-radius: 8px !default;
+
+//* ------ Button Settings ------
+$button-font-size: 14px !default;
+$button-padding: 4px 16px !default;
+$button-font-weight: 500 !default;;
+$button-line-height: 1.715em !default;
+$button-dense-padding: .285em !default;
+$button-push-border-radius: 7px !default;
+$button-rounded-border-radius: 28px !default;
+$button-border-radius: $generic-border-radius !default;
