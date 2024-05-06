@@ -1,4 +1,5 @@
+import layoutTranslateEN from 'src/i18n/en-US/layout';
+
 export default {
-  userName: 'User Name',
-  password: 'Password'
+  ...layoutTranslateEN,
 };
