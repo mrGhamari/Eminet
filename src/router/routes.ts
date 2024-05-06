@@ -7,18 +7,19 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/Login',
-    component: () => import('layouts/LoginLayout.vue'),
+    component: () => import('src/layouts/LoginLayout.vue'),
     children: [
       {
+        name: 'Login',
         path: '',
-        component: () => import('src/pages/login/loginPage.vue'),
+        component: () => import('pages/login/loginPage.vue'),
       },
     ],
   },
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ name:'Dashboard', path: '/', component: () => import('pages/dashboard/dashboardPage.vue') }],
+    children: [{ name:'Dashboard', path: '/Dashboard', component: () => import('pages/dashboard/dashboardPage.vue') }],
   },
 ];
 
