@@ -15,8 +15,6 @@ export function useLocale() {
   const i18n = useI18n({ useScope: 'global' });
 
   function setLocale(langIsoName: SupportedLanguage) {
-    console.log(langIsoName);
-
     locale.value = langIsoName;
     i18n.locale.value = langIsoName;
     $q.lang.set(langPacks[langIsoName] ?? langPacks.enUS);

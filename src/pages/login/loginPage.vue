@@ -4,20 +4,21 @@
       ref="loginFormRef"
       @submit="onSubmit"
       @reset="onReset"
-      class="col-4 column justify-center items-center q-col-gutter-sm">
+      class="col-4 column justify-center items-center q-col-gutter-sm"
+    >
       <div class="text-h4">لوگو امینت</div>
       <div class="text-subtitle1 text-grey">به امینت خوش آمدید :)</div>
       <q-input
         outlined
         class="full-width"
-        label="نام کاربری"
+        :label="$t('userName')"
         :rules="[rules.required]"
         v-model="loginForm.userName"
       />
       <q-input
         outlined
         class="full-width"
-        label="رمز ورود"
+        :label="$t('password')"
         :rules="[rules.required]"
         v-model="loginForm.password"
       />
@@ -25,7 +26,7 @@
         class="full-width"
         size="md"
         color="primary"
-        label="ورود"
+        :label="$t('login')"
         type="submit"
         :loading="loading"
         @keyup.enter="onSubmit"
@@ -44,7 +45,7 @@ const rules = useRules();
 const router = useRouter();
 const loading = ref<boolean>(false);
 const loginFormRef = ref<HTMLFormElement>();
-const loginForm: { userName?: string, password?: string } = reactive({});
+const loginForm: { userName?: string; password?: string } = reactive({});
 
 // ------ Methods ------
 const onSubmit = () => {
@@ -57,11 +58,9 @@ const onSubmit = () => {
       }
     });
   } catch (e) {
-    console.log(e);
   } finally {
     loading.value = false;
   }
-
 };
 const onReset = () => loginFormRef.value?.reset();
 </script>

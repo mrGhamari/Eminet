@@ -2,7 +2,7 @@
   "name": "eminet",
   "version": "0.0.1",
   "description": "eminet project",
-  "productName": "Quasar App",
+  "productName": "Eminet",
   "author": "mrGhamari <mmdrza77@gmail.com>",
   "private": true,
   "scripts": {

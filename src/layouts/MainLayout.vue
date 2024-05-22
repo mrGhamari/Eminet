@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf" class="main-layout">
     <!-- Header -->
     <q-header class="header" flat>
-      <q-toolbar class="row justify-between items-center fit">
+      <q-toolbar v-if="$q.screen.gt.md" class="row justify-between items-center fit">
         <div class="row items-center">
           <div class="text-h5 text-bold text-black">Logo</div>
           <q-btn flat no-caps color="black" :label="$t('find_immigrant')" />
@@ -26,15 +26,24 @@
             </q-list>
           </q-btn-dropdown>
           <q-btn flat color="black" icon="help" />
-          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" />
+          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" @click="goToPage" />
         </div>
+      </q-toolbar>
+
+      <q-toolbar v-else class="row justify-between items-center fit">
+        <q-btn flat @click="drawerLeft = !drawerLeft" round dense icon="menu" />
+        <div class="text-h5 text-bold text-black">Logo</div>
       </q-toolbar>
     </q-header>
 
+    <q-drawer v-if="$q.screen.lt.sm" v-model="drawerLeft" class="bg-white column items-start">
+      <sidebar-items @close-modal="drawerLeft = false" />
+    </q-drawer>
+
     <!-- Main -->
-    <!-- <q-page-container>
+    <q-page-container>
       <router-view />
-    </q-page-container> -->
+    </q-page-container>
 
     <!-- Footer -->
     <q-footer class="bg-black" flat>
@@ -46,14 +55,20 @@
 </template>
 
 <script setup lang="ts">
+import { useQuasar } from 'quasar';
 import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useLocale } from 'src/composables/use-locale';
+import SidebarItems from 'src/components/layout/sidebarItem.vue';
 
 // ------ lifeCycle ------
 onMounted(() => (selectedLanguage.value = localStorage.getItem('language') === 'enUS' ? 'EN' : 'فارسی'));
 
 // ------ Variables ------
+const $q = useQuasar();
+const router = useRouter();
 const locale = useLocale();
+const drawerLeft = ref<boolean>(false);
 const selectedLanguage = ref<string>();
 const languageOptions: { value: 'faIR' | 'enUS'; label: string }[] = [
   { label: 'EN', value: 'enUS' },
@@ -61,6 +76,7 @@ const languageOptions: { value: 'faIR' | 'enUS'; label: string }[] = [
 ];
 
 // ------ Methods ------
+const goToPage = () => router.push({ name: 'Login' });
 const selectLang = (lang: { label: string; value: 'faIR' | 'enUS' }) => {
   selectedLanguage.value = lang.label;
   locale.setLocale(lang.value);

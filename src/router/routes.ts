@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const routes: RouteRecordRaw[] = [
   {
     path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue'),
+    component: () => import('../../public/ErrorNotFound.vue'),
   },
   {
     path: '/Login',
@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ name:'Dashboard', path: '/Dashboard', component: () => import('pages/dashboard/dashboardPage.vue') }],
+    children: [{ name: 'Dashboard', path: '/Dashboard', component: () => import('pages/dashboard/dashboardPage.vue') }],
   },
 ];
 

@@ -87,14 +87,14 @@ const {
 
 // ------ computed ------
 const placeholderComputed = computed(() => {
-  let computedText;
+  let computedText: string | undefined;
   if (isMultiple.value && !model.value?.length) computedText = placeholder.value;
   else if (!model.value) computedText = placeholder.value;
   return computedText;
 });
 
 // ------ Methods ------
-const filterFn = (val: string, update) => {
+const filterFn = (val: string, update: (arg0: () => void) => void) => {
   update(() => {
     if (!val) filterOptions.value = options.value;
     else
