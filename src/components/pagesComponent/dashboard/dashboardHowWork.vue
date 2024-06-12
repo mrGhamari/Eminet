@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard-how-work">
     <h3 class="text-bold">{{ $t('how_work') }}</h3>
-    <div class="row items-stretch q-col-gutter-x-md">
-      <div class="col">
+    <div class="row justify-between q-col-gutter-x-md">
+      <div :class="$q.screen.gt.sm ? 'col' : 'col-12 q-mt-md'">
         <q-card class="q-pa-lg" bordered flat>
           <q-chip color="orange" text-color="white"> 1 </q-chip>
           <div class="text-h4 text-bold q-py-sm">{{ $t('find_emigrant') }}</div>
@@ -13,7 +13,7 @@
         </q-card>
       </div>
 
-      <div class="col">
+      <div :class="$q.screen.gt.sm ? 'col' : 'col-12 q-mt-md'">
         <q-card class="q-pa-lg" bordered flat>
           <q-chip square color="orange" text-color="white"> 2 </q-chip>
           <div class="text-h4 text-bold q-py-sm">{{ $t('connect_emigrant') }}</div>
@@ -24,7 +24,7 @@
         </q-card>
       </div>
 
-      <div class="col">
+      <div :class="$q.screen.gt.sm ? 'col' : 'col-12 q-mt-md'">
         <q-card class="q-pa-lg" bordered flat>
           <q-chip square color="orange" text-color="white"> 3 </q-chip>
           <div class="text-h4 text-bold q-py-sm">{{ $t('counseling') }}</div>
@@ -40,6 +40,10 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'HowWork' });
+import { useQuasar } from 'quasar';
+
+// ------ Variables ------
+const $q = useQuasar();
 </script>
 
 <style scoped></style>

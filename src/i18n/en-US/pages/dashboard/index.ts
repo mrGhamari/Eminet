@@ -1,5 +1,6 @@
 import dashboardSummaryEn from 'src/i18n/en-US/pages/dashboard/dashboardSummary';
 import dashboardHowWorkEn from 'src/i18n/en-US/pages/dashboard/dashboardHowWork';
+import dashboardBecomeEn from 'src/i18n/en-US/pages/dashboard/dashboardBecome';
 export default {
   person: 'Person',
   get_start: 'Get Start',
@@ -10,4 +11,5 @@ export default {
   guarantee_description: 'Try another consultant for free if you’re not satisfied.',
   ...dashboardSummaryEn,
   ...dashboardHowWorkEn,
+  ...dashboardBecomeEn,
 };

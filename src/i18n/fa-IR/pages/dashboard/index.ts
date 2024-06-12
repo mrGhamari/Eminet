@@ -1,5 +1,6 @@
 import dashboardSummaryFa from 'src/i18n/fa-IR/pages/dashboard/dashboardSummary';
 import dashboardHowWorkFa from 'src/i18n/fa-IR/pages/dashboard/dashboardHowWork';
+import dashboardBecomeFa from 'src/i18n/fa-IR/pages/dashboard/dashboardBecome';
 export default {
   get_start: 'شروع',
   dashboard_counseling: 'بهترین مشاور را برای مهاجرت پیدا کنید',
@@ -10,4 +11,5 @@ export default {
   guarantee_description: 'اگر مشاور خود را دوست نداشتید رایگان مشاور دیگری را امتحان کنید',
   ...dashboardSummaryFa,
   ...dashboardHowWorkFa,
+  ...dashboardBecomeFa,
 };
