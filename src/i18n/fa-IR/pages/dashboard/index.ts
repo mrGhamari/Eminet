@@ -6,6 +6,8 @@ export default {
   person: 'شخص',
   britannia: 'انگلستان',
   right_emigrant: 'بهترین فرد برای مهاجرت خود را پیدا کنید',
+  guarantee_text: 'ما افراد مشاور را تضمین میکنیم.',
+  guarantee_description: 'اگر مشاور خود را دوست نداشتید رایگان مشاور دیگری را امتحان کنید',
   ...dashboardSummaryFa,
   ...dashboardHowWorkFa,
 };
