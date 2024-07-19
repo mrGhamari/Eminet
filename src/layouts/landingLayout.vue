@@ -1,8 +1,14 @@
 <template>
   <q-layout view="hHh lpR fff" class="main-layout">
-    <q-header class="header bg-white" bordered>
+    <!-- Header -->
+    <q-header class="header" flat>
       <q-toolbar v-if="$q.screen.gt.md" class="row justify-between items-center fit">
-        <div class="text-h5 text-bold text-black">Logo</div>
+        <div class="row items-center">
+          <div class="text-h5 text-bold text-black">Logo</div>
+          <q-btn flat no-caps color="black" :label="$t('find_immigrant')" />
+          <q-btn flat no-caps color="black" :label="$t('become_immigrant')" />
+        </div>
+
         <div class="row items-center">
           <q-btn-dropdown class="q-ml-lg q-mr-md text-black" :label="selectedLanguage" dense flat>
             <q-list>
@@ -19,8 +25,8 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-          <q-btn icon="notifications" flat dense color="black" />
-          <q-avatar rounded size="lg" color="teal" text-color="white" icon="person" />
+          <q-btn flat color="black" icon="help" />
+          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" @click="goToPage" />
         </div>
       </q-toolbar>
 
@@ -30,6 +36,7 @@
       </q-toolbar>
     </q-header>
 
+    <!-- Main -->
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -46,9 +53,9 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({ name: 'MainLayout' });
-import { ref, onMounted } from 'vue';
 import { useQuasar } from 'quasar';
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useLocale } from 'src/composables/use-locale';
 import footerItem from 'src/components/layout/shared/footerItem.vue';
 
@@ -57,6 +64,7 @@ onMounted(() => (selectedLanguage.value = localStorage.getItem('language') === '
 
 // ------ Variables ------
 const $q = useQuasar();
+const router = useRouter();
 const locale = useLocale();
 const drawerLeft = ref<boolean>(false);
 const selectedLanguage = ref<string>();
@@ -66,6 +74,7 @@ const languageOptions: { value: 'faIR' | 'enUS'; label: string }[] = [
 ];
 
 // ------ Methods ------
+const goToPage = () => router.push({ name: 'Login' });
 const selectLang = (lang: { label: string; value: 'faIR' | 'enUS' }) => {
   selectedLanguage.value = lang.label;
   locale.setLocale(lang.value);
@@ -74,7 +83,7 @@ const selectLang = (lang: { label: string; value: 'faIR' | 'enUS' }) => {
 <style lang="scss" scoped>
 .main-layout {
   .header {
-    height: 70px !important;
+    height: 70px;
   }
 }
 </style>

@@ -24,12 +24,12 @@
 <script setup lang="ts">
 defineOptions({ name: 'DashboardPage' });
 import { useQuasar } from 'quasar';
-import HeaderDashboard from 'src/components/pagesComponent/dashboard/headerDashboard.vue';
-import DashboardSummary from 'src/components/pagesComponent/dashboard/dashboardSummary.vue';
-import DashboardHowWork from 'src/components/pagesComponent/dashboard/dashboardHowWork.vue';
-import DashboardCountries from 'src/components/pagesComponent/dashboard/dashboardCountries.vue';
-import dashboardFindEmigrant from 'src/components/pagesComponent/dashboard/dashboardFindEmigrant.vue';
-import BecomeEmigrant from 'src/components/pagesComponent/dashboard/becomeEmigrant.vue';
+import HeaderDashboard from 'src/components/pagesComponent/landing/headerDashboard.vue';
+import DashboardSummary from 'src/components/pagesComponent/landing/dashboardSummary.vue';
+import DashboardHowWork from 'src/components/pagesComponent/landing/dashboardHowWork.vue';
+import DashboardCountries from 'src/components/pagesComponent/landing/dashboardCountries.vue';
+import dashboardFindEmigrant from 'src/components/pagesComponent/landing/dashboardFindEmigrant.vue';
+import BecomeEmigrant from 'src/components/pagesComponent/landing/becomeEmigrant.vue';
 
 // ------ Variables ------
 const $q = useQuasar();

@@ -8,5 +8,5 @@
 
 <script setup lang="ts">
 defineOptions({ name: 'DashboardCountries' });
-import countryComponent from 'src/components/pagesComponent/dashboard/component/countryComponent.vue';
+import countryComponent from 'src/components/pagesComponent/landing/component/countryComponent.vue';
 </script>
