@@ -1,8 +1,9 @@
 <template>
   <q-card class="row items-center fit" bordered flat>
-    <div :class="$q.screen.gt.sm ? 'col' : 'col-12'" class="full-height">
-      <q-img src="src/assets/images/me.JPG" height="100%" />
+    <div :class="$q.screen.gt.sm ? 'col' : 'col-12'">
+      <q-img src="src/assets/images/me.JPG" />
     </div>
+
     <div class="column q-px-lg" :class="$q.screen.gt.sm ? 'col' : 'col-12'">
       <div class="text-h2 text-bold">{{ $t('become_emigrant') }}</div>
       <div class="text-body1 q-mt-md">

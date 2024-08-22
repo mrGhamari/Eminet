@@ -8,7 +8,7 @@
           <div class="text-h4 text-bold q-py-sm">{{ $t('find_emigrant') }}</div>
           <div class="text-body">{{ $t('find_emigrant_description') }}</div>
           <div class="q-mt-md">
-            <q-img src="src/assets/images/connectImage.avif" width="21rem" height="22rem" />
+            <q-img src="src/assets/images/connectImage.avif" width="100%" height="100%" />
           </div>
         </q-card>
       </div>
@@ -19,7 +19,7 @@
           <div class="text-h4 text-bold q-py-sm">{{ $t('connect_emigrant') }}</div>
           <div class="text-body">{{ $t('connect_emigrant_description') }}</div>
           <div class="q-mt-md">
-            <q-img src="src/assets/images/connectImage.avif" width="21rem" height="22rem" />
+            <q-img src="src/assets/images/connectImage.avif" width="100%" height="100%" />
           </div>
         </q-card>
       </div>
@@ -30,7 +30,7 @@
           <div class="text-h4 text-bold q-py-sm">{{ $t('counseling') }}</div>
           <div class="text-body">{{ $t('conuseling_description') }}</div>
           <div class="q-mt-md">
-            <q-img src="src/assets/images/connectImage.avif" width="21rem" height="22rem" />
+            <q-img src="src/assets/images/connectImage.avif" width="100%" height="100%" />
           </div>
         </q-card>
       </div>

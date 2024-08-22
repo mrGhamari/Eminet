@@ -19,13 +19,15 @@
           </div>
         </div>
       </div>
+
       <div class="column">
-        <div class="col row items-start justify-between">
-          <span class="text-bold text-h5"> New </span>
+        <div class="col row items-start justify-around">
+          <span class="text-bold text-h5">{{ $t('new') }} </span>
           <span class="text-bold text-h5"> 17$ </span>
         </div>
+
         <div class="col row items-end">
-          <q-btn color="primary" outline label="Send Message" />
+          <q-btn color="primary" outline :label="$t('send_message_card')" />
         </div>
       </div>
     </q-card>

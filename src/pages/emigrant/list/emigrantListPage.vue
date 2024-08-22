@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-10 offset-1">
         <div class="row q-col-gutter-md q-pa-md">
-          <div class="col-8">
+          <div :class="$q.screen.gt.sm ? 'col-8' : 'col-12'">
             <div class="column q-col-gutter-y-md">
               <Emigrant-card v-for="(item, index) in 8" :key="index" />
             </div>
           </div>
           <div class="col-4">
-            <q-card class="my-card">
+            <q-card class="my-card" v-if="$q.screen.gt.sm">
               <q-card-section>
                 <div class="text-h6">Our Changing Planet</div>
                 <div class="text-subtitle2">by John Doe</div>

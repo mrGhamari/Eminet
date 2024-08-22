@@ -15,7 +15,7 @@
     </div>
     <div class="row">
       <div :class="$q.screen.gt.sm ? 'col-8 offset-2' : 'col-12 q-px-md'">
-        <become-emigrant class="q-my-lg" />
+        <become-emigrant />
       </div>
     </div>
   </q-page>

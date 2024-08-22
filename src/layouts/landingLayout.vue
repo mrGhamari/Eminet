@@ -1,11 +1,11 @@
 <template>
-  <q-layout view="hHh lpR fff" class="main-layout">
+  <q-layout view="hhh lpR fff" class="main-layout">
     <!-- Header -->
     <q-header class="header" flat>
       <q-toolbar v-if="$q.screen.gt.md" class="row justify-between items-center fit">
         <div class="row items-center">
           <div class="text-h5 text-bold text-black">Logo</div>
-          <q-btn flat no-caps color="black" :label="$t('find_immigrant')" />
+          <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
           <q-btn flat no-caps color="black" :label="$t('become_immigrant')" />
         </div>
 
