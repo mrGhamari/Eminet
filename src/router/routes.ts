@@ -1,5 +1,17 @@
 import { RouteRecordRaw } from 'vue-router';
 
+//! ------ Login & Register Routes ------
+import LoginPage from 'pages/login/loginPage.vue';
+import LoginLayout from 'src/layouts/LoginLayout.vue';
+
+//! ------ Landing Routes ------
+import LandingPage from 'pages/landing/landingPage.vue';
+import LandingLayout from 'src/layouts/landingLayout.vue';
+
+//! ------ Main Routes ------
+import MainLayout from 'src/layouts/mainLayout.vue';
+import Emigrants from 'pages/emigrant/list/emigrantListPage.vue';
+
 const routes: RouteRecordRaw[] = [
   // Error Routes
   {
@@ -7,33 +19,25 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../../public/ErrorNotFound.vue'),
   },
 
-  // Login Routes
+  //* ------ Login & Register Routes ------
   {
     path: '/Login',
-    component: () => import('src/layouts/LoginLayout.vue'),
-    children: [
-      {
-        name: 'Login',
-        path: '',
-        component: () => import('pages/login/loginPage.vue'),
-      },
-    ],
+    component: LoginLayout,
+    children: [{ path: '', name: 'Login', component: LoginPage }],
   },
 
-  // Landing Routes
+  //* ------ Landing Routes ------
   {
     path: '/',
-    component: () => import('src/layouts/landingLayout.vue'),
-    children: [{ name: 'Landing', path: '/', component: () => import('pages/landing/landingPage.vue') }],
+    component: LandingLayout,
+    children: [{ name: 'Landing', path: '/', component: LandingPage }],
   },
 
-  // Main Routes
+  //* ------ Main Routes ------
   {
     path: '/online',
-    component: () => import('src/layouts/mainLayout.vue'),
-    children: [
-      { name: 'Emigrants', path: '/Emigrants', component: () => import('pages/emigrant/list/emigrantListPage.vue') },
-    ],
+    component: MainLayout,
+    children: [{ name: 'Emigrants', path: '/Emigrants', component: Emigrants }],
   },
 ];
 
