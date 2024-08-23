@@ -9,7 +9,7 @@
             </div>
           </div>
           <div class="col-4">
-            <q-card class="my-card" v-if="$q.screen.gt.sm">
+            <q-card class="my-card" flat bordered v-if="$q.screen.gt.sm">
               <q-card-section>
                 <div class="text-h6">Our Changing Planet</div>
                 <div class="text-subtitle2">by John Doe</div>
@@ -27,5 +27,3 @@
 defineOptions({ name: 'EmigrantListPage' });
 import EmigrantCard from 'src/components/pagesComponent/emigrant/list/emigrantCard.vue';
 </script>
-
-<style scoped></style>
