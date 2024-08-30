@@ -2,6 +2,7 @@
   <q-page class="mvp-landing fit">
     <div class="row">
       <div :class="$q.screen.gt.sm ? 'col-8 offset-2' : 'col-12 q-px-md'">
+        <!-- Filters -->
         <div
           :class="$q.screen.gt.sm ? 'row items-center q-col-gutter-x-md q-mt-md' : 'column q-col-gutter-y-md q-mt-sm'"
         >
@@ -16,8 +17,10 @@
           </div>
         </div>
         <div class="full-width q-mt-md">
-          <q-btn color="primary" class="full-width" label="Submit" />
+          <q-btn :label="$t('submit')" color="primary" no-caps unelevated class="full-width" />
         </div>
+
+        <!-- Emigrant Card -->
         <div class="card-section column q-col-gutter-y-md q-my-sm">
           <Emigrant-card v-for="(item, index) in 8" :key="index" />
         </div>

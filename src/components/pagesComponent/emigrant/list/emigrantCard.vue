@@ -4,12 +4,12 @@
       <div class="row items-start">
         <q-img :src="PouyaPicture" :ratio="1" width="150px" height="150px" />
         <div class="column q-ml-md">
-          <span class="text-h6 text-bold">Pouya Farahani</span>
+          <span class="text-h6 text-bold">Parsa Beyki</span>
           <div class="row items-center q-mt-md">
             <q-icon name="language" size="xs" color="grey-5" />
             <span class="text-body2 text-grey-6 q-ml-sm">England</span>
           </div>
-          <div class="row items-center q-my-sm">
+          <div class="row items-center q-my-md">
             <q-icon name="badge" size="xs" color="grey-5" />
             <span class="text-body2 text-grey-6 q-ml-sm">WorkPermit</span>
           </div>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col row items-end">
-          <q-btn color="primary" outline :label="$t('send_message_card')" />
+          <q-btn color="primary" unelevated :label="$t('send_message_card')" />
         </div>
       </div>
     </q-card>
