@@ -99,7 +99,7 @@ const selectLang = (lang: { label: string; value: 'faIR' | 'enUS' }) => {
 <style lang="scss" scoped>
 .main-layout {
   .header {
-    height: 70px;
+    height: 50px;
   }
 }
 </style>
