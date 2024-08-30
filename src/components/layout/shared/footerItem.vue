@@ -1,6 +1,7 @@
 <template>
-  <div class="fit row items-start justify-around q-py-lg footer">
-    <div class="column">
+  <div class="fit row items-start justify-around q-py-sm footer">
+    <strong>Powered By MIGNET</strong>
+    <!-- <div class="column">
       <div class="text-h6">About Us</div>
       <q-btn label="Who We Are" class="q-my-md" flat dense />
       <q-btn label="How it Work" flat dense />
@@ -36,19 +37,12 @@
         <q-img :src="whiteLinkedinLogo" width="15px" height="15px" class="q-mr-sm" />
         <a href="#">Linkedin</a>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
-import whiteXLogo from 'src/assets/images/white-x-logo.png';
-import whiteLinkedinLogo from 'src/assets/images/white-linkedin-logo.png';
-import whiteInstagramIcon from 'src/assets/images/white-instagram-icon.png';
+// import whiteXLogo from 'src/assets/images/white-x-logo.png';
+// import whiteLinkedinLogo from 'src/assets/images/white-linkedin-logo.png';
+// import whiteInstagramIcon from 'src/assets/images/white-instagram-icon.png';
 </script>
-
-<style scoped>
-.footer {
-  position: sticky;
-  bottom: 0 !important;
-}
-</style>

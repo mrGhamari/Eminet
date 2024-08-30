@@ -7,8 +7,8 @@
           <div>
             <img src="../assets/images/Header logo.svg" width="100px" height="90px" />
           </div>
-          <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
-          <q-btn flat no-caps color="black" :label="$t('become_immigrant')" />
+          <!-- <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
+          <q-btn flat no-caps color="black" :label="$t('become_immigrant')" /> -->
         </div>
 
         <div class="row items-center">
@@ -27,8 +27,8 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-          <q-btn flat color="black" icon="help" />
-          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" @click="goToPage" />
+          <!-- <q-btn flat color="black" icon="help" />
+          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" @click="goToPage" /> -->
         </div>
       </q-toolbar>
 
@@ -57,7 +57,7 @@
 <script setup lang="ts">
 import { useQuasar } from 'quasar';
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+// import { useRouter } from 'vue-router';
 import { useLocale } from 'src/composables/use-locale';
 import footerItem from 'src/components/layout/shared/footerItem.vue';
 
@@ -66,7 +66,7 @@ onMounted(() => (selectedLanguage.value = localStorage.getItem('language') === '
 
 // ------ Variables ------
 const $q = useQuasar();
-const router = useRouter();
+// const router = useRouter();
 const locale = useLocale();
 const drawerLeft = ref<boolean>(false);
 const selectedLanguage = ref<string>();
@@ -76,7 +76,7 @@ const languageOptions: { value: 'faIR' | 'enUS'; label: string }[] = [
 ];
 
 // ------ Methods ------
-const goToPage = () => router.push({ name: 'Login' });
+// const goToPage = () => router.push({ name: 'Login' });
 const selectLang = (lang: { label: string; value: 'faIR' | 'enUS' }) => {
   selectedLanguage.value = lang.label;
   locale.setLocale(lang.value);
