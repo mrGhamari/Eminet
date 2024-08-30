@@ -42,7 +42,7 @@ import PouyaPicture from 'src/assets/images/pouya.jpg';
 <style lang="scss" scoped>
 .emigrant-card {
   .emigrant-card__description {
-    width: 300px;
+    width: 700px;
   }
 }
 </style>
