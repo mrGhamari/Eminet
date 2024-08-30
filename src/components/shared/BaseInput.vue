@@ -8,9 +8,20 @@
     </div>
 
     <div class="base-input-wrapper__input">
-      <q-input dense outlined lazy-rules :rows="rows" :rules="rules" v-bind="$attrs" v-model="model" :bg-color="bgColor"
-        :readonly="readonly" :autofocus="autofocus" :maxlength="maxLength" :placeholder="placeholder"
-        :type="type ? type : 'text'">
+      <q-input
+        dense
+        outlined
+        lazy-rules
+        :rules="rules"
+        v-bind="$attrs"
+        v-model="model"
+        :bg-color="bgColor"
+        :readonly="readonly"
+        :autofocus="autofocus"
+        :maxlength="maxLength"
+        :placeholder="placeholder"
+        :type="type ? type : 'text'"
+      >
         <template v-if="isSearch" #prepend>
           <q-icon class="search-icon" name="rIcon:icon-search-normal" />
         </template>
