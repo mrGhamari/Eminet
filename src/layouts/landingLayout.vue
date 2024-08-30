@@ -12,7 +12,7 @@
         </div>
 
         <div class="row items-center">
-          <q-btn-dropdown class="q-ml-lg q-mr-md text-black" :label="selectedLanguage" dense flat>
+          <q-btn-dropdown class="text-black" :label="selectedLanguage" dense flat>
             <q-list>
               <q-item
                 clickable
