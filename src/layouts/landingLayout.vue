@@ -33,8 +33,22 @@
       </q-toolbar>
 
       <q-toolbar v-else class="row justify-between items-center fit">
-        <q-btn flat @click="drawerLeft = !drawerLeft" round dense icon="menu" />
-        <div class="text-h5 text-bold text-black">Logo</div>
+        <q-btn-dropdown class="text-black" :label="selectedLanguage" dense flat>
+          <q-list>
+            <q-item
+              clickable
+              v-close-popup
+              v-for="(item, index) in languageOptions"
+              :key="index"
+              @click="selectLang(item)"
+            >
+              <q-item-section>
+                <q-item-label>{{ item.label }}</q-item-label>
+              </q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+        <img src="../assets/images/Header logo.svg" width="100px" height="90px" />
       </q-toolbar>
     </q-header>
 
@@ -68,7 +82,7 @@ onMounted(() => (selectedLanguage.value = localStorage.getItem('language') === '
 const $q = useQuasar();
 // const router = useRouter();
 const locale = useLocale();
-const drawerLeft = ref<boolean>(false);
+// const drawerLeft = ref<boolean>(false);
 const selectedLanguage = ref<string>();
 const languageOptions: { value: 'faIR' | 'enUS'; label: string }[] = [
   { label: 'EN', value: 'enUS' },

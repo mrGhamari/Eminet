@@ -5,7 +5,8 @@ import LoginPage from 'pages/login/loginPage.vue';
 import LoginLayout from 'src/layouts/LoginLayout.vue';
 
 //! ------ Landing Routes ------
-import LandingPage from 'pages/landing/landingPage.vue';
+// import LandingPage from 'pages/landing/landingPage.vue';
+import mvpLanding from 'src/pages/landing/mvpLanding.vue';
 import LandingLayout from 'src/layouts/landingLayout.vue';
 
 //! ------ Main Routes ------
@@ -30,7 +31,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: LandingLayout,
-    children: [{ name: 'Landing', path: '/', component: LandingPage }],
+    children: [
+      // { name: 'Landing', path: '/', component: LandingPage },
+      { name: 'MvpLanding', path: '/', component: mvpLanding },
+    ],
   },
 
   //* ------ Main Routes ------
