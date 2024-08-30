@@ -1,0 +1,5 @@
+export default {
+  country: 'کشور',
+  migration_method: 'روش مهاجرت',
+  gender: 'جنسیت',
+};
