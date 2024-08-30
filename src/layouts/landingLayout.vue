@@ -4,7 +4,9 @@
     <q-header class="header" flat>
       <q-toolbar v-if="$q.screen.gt.md" class="row justify-between items-center fit">
         <div class="row items-center">
-          <div class="text-h5 text-bold text-black">Logo</div>
+          <div>
+            <img src="../assets/images/Header logo.svg" width="100px" height="90px" />
+          </div>
           <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
           <q-btn flat no-caps color="black" :label="$t('become_immigrant')" />
         </div>
