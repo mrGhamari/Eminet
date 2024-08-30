@@ -1,8 +1,8 @@
 {
-  "name": "eminet",
+  "name": "Mignet",
   "version": "0.0.1",
-  "description": "eminet project",
-  "productName": "Eminet",
+  "description": "Mignet project",
+  "productName": "Mignet",
   "author": "mrGhamari <mmdrza77@gmail.com>",
   "private": true,
   "scripts": {
