@@ -21,8 +21,8 @@
         </div>
 
         <!-- Emigrant Card -->
-        <div class="card-section column q-col-gutter-y-md q-my-sm">
-          <Emigrant-card v-for="(item, index) in 8" :key="index" />
+        <div class="card-section column q-my-sm">
+          <Emigrant-card v-for="(item, index) in 9" :key="index" />
         </div>
       </div>
     </div>
@@ -34,7 +34,4 @@ defineOptions({ name: 'MvpLanding' });
 import EmigrantCard from 'src/components/pagesComponent/emigrant/list/emigrantCard.vue';
 </script>
 
-<style lang="scss" scoped>
-.mvp-landing {
-}
-</style>
+<style lang="scss" scoped></style>
