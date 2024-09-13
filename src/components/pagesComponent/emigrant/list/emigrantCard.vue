@@ -14,6 +14,7 @@
       <q-img v-else :src="PouyaPicture" width="175px" height="175px" class="rounded-borders" />
     </div>
 
+    <!-- Imigo Data -->
     <div class="column" :class="$q.screen.xs ? 'q-mt-md' : 'col q-pl-md'">
       <div class="row items-center justify-between">
         <span class="text-bold text-h6">Parsa Beyki</span>
@@ -35,6 +36,8 @@
         </span>
       </div>
     </div>
+
+    <!-- Button -->
     <div class="fit q-mt-md">
       <q-btn label="Submit" color="primary" class="fit" no-caps />
     </div>
