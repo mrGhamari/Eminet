@@ -3,4 +3,5 @@ export default {
   login: 'Login',
   find_immigrant: 'Find Immigrant',
   become_immigrant: 'Become Immigrant',
+  sign_up: 'Sign Up',
 };

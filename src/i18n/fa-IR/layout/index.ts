@@ -3,4 +3,5 @@ export default {
   login: 'ورود',
   find_immigrant: 'مهاجر پیدا کنید',
   become_immigrant: 'مهاجر شوید',
+  sign_up: 'ثبت نام',
 };

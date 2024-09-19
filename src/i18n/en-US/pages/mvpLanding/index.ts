@@ -3,4 +3,5 @@ export default {
   migration_method: 'Migration Method',
   gender: 'Gender',
   submit: 'Submit',
+  profile: 'Profile',
 };
