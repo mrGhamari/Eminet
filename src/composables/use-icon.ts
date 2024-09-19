@@ -1,8 +1,10 @@
 import { useQuasar } from 'quasar';
 export function useIcon() {
+  // ------ Type ------
+  type IconPaths = { [key: string]: string };
   // ------ Variables ------
   const $q = useQuasar();
-  const myIcons = {
+  const myIcons: IconPaths = {
     'favorite-fill': 'img:/src/assets/icon/favorite-fill.svg',
     'favorite-outline': 'img:/src/assets/icon/favorite-outline.svg',
   };
