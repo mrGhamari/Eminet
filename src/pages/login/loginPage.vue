@@ -54,7 +54,8 @@ const onSubmit = () => {
     loginFormRef.value?.validate().then((valid: boolean) => {
       if (valid) {
         localStorage.setItem('Auth', 'true');
-        router.push({ name: 'Emigrants' });
+        // router.push({ name: 'Emigrants' });
+        router.push({ name: 'MvpLanding' });
       }
     });
   } catch (e) {
