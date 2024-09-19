@@ -1,13 +1,14 @@
 <template>
   <div class="base-select-wrapper fit">
     <div class="base-select-wrapper__label">
-      <label>
+      <!-- <label>
         {{ label }}
         <span v-if="rules?.length" class="text-negative"> * </span>
-      </label>
+      </label> -->
     </div>
 
     <q-select
+      :label="label"
       dense
       outlined
       :rules="rules"
