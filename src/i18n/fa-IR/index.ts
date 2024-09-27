@@ -1,12 +1,18 @@
-import loginTranslateFa from 'src/i18n/fa-IR/pages/login';
 import layoutTranslateFA from 'src/i18n/fa-IR/layout';
+import loginTranslateFa from 'src/i18n/fa-IR/pages/login';
+import mvpLandingFa from 'src/i18n/fa-IR/pages/mvpLanding';
+import countryListFa from 'src/i18n/fa-IR/shared/countryList';
 import dashboardTransalteFA from 'src/i18n/fa-IR/pages/dashboard';
 import emigrantListTranslateFA from 'src/i18n/fa-IR/pages/emigrantList';
-import mvpLandingFa from 'src/i18n/fa-IR/pages/mvpLanding';
+import genderFa from 'src/i18n/fa-IR/shared/gender';
+import migrationMethodFa from 'src/i18n/fa-IR/shared/migrationMethod';
 export default {
+  ...genderFa,
+  ...countryListFa,
   ...mvpLandingFa,
   ...loginTranslateFa,
   ...layoutTranslateFA,
+  ...migrationMethodFa,
   ...dashboardTransalteFA,
   ...emigrantListTranslateFA,
 };
