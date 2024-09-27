@@ -1,14 +1,14 @@
 <template>
   <q-layout view="hhh lpR fff" class="main-layout">
     <!-- Header -->
-    <q-header class="header" flat>
+    <q-header class="header bg-white" flat>
       <q-toolbar v-if="$q.screen.gt.md" class="row justify-between items-center fit">
         <div class="row items-center">
           <div>
             <img src="../assets/images/Header logo.svg" width="100px" height="90px" />
           </div>
-          <!-- <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
-          <q-btn flat no-caps color="black" :label="$t('become_immigrant')" /> -->
+          <q-btn flat no-caps color="black" :label="$t('find_immigrant')" to="Emigrants" />
+          <q-btn flat no-caps color="black" :label="$t('become_immigrant')" />
         </div>
 
         <div class="row items-center">
@@ -27,8 +27,9 @@
               </q-item>
             </q-list>
           </q-btn-dropdown>
-          <!-- <q-btn flat color="black" icon="help" />
-          <q-btn :label="$t('login')" no-caps outline color="black" icon="login" @click="goToPage" /> -->
+          <q-btn flat color="black" icon="help" />
+          <q-btn :label="$t('sign_up')" no-caps outline color="black" />
+          <q-btn :label="$t('login')" class="q-ml-md" no-caps outline color="black" />
         </div>
       </q-toolbar>
 
