@@ -1,16 +1,10 @@
 <template>
   <div class="base-select-wrapper fit">
-    <div class="base-select-wrapper__label">
-      <!-- <label>
-        {{ label }}
-        <span v-if="rules?.length" class="text-negative"> * </span>
-      </label> -->
-    </div>
-
     <q-select
       :label="label"
       dense
       outlined
+      v-bind="$attrs"
       :rules="rules"
       v-model="model"
       :disable="disable"
@@ -47,14 +41,9 @@
       </template>
 
       <!-- Clear Button Slot -->
-      <!-- <template v-if="model && !isMultiple" #append>
-        <q-icon
-          color="secondary"
-          class="cursor-pointer"
-          name="rIcon:icon-trush-square"
-          @click.stop.prevent="model = null"
-        />
-      </template> -->
+      <template v-if="model && !isMultiple" #append>
+        <q-icon color="secondary" class="cursor-pointer" name="delete" @click.stop.prevent="model = null" />
+      </template>
     </q-select>
   </div>
 </template>
@@ -72,19 +61,7 @@ const model = defineModel<string | unknown[] | null>({ required: true });
 
 // ------ Props And Emits ------
 const props = defineProps<IBaseSelect>();
-const {
-  options,
-  isMultiple,
-  label,
-  optionValue,
-  optionLabel,
-  disable,
-  rules,
-  placeholder,
-  mapOption,
-  emitValue,
-  bgWhite,
-} = toRefs(props);
+const { options, isMultiple, placeholder, optionLabel } = toRefs(props);
 
 // ------ computed ------
 const placeholderComputed = computed(() => {
@@ -100,7 +77,7 @@ const filterFn = (val: string, update: (arg0: () => void) => void) => {
     if (!val) filterOptions.value = options.value;
     else
       filterOptions.value = options.value.filter(
-        (item) => item[optionLabel.value].toLocaleLowerCase().indexOf(val.toLocaleLowerCase()) > -1
+        (item) => item[optionLabel.value ?? ''].toLocaleLowerCase().indexOf(val.toLocaleLowerCase()) > -1
       );
   });
 };
