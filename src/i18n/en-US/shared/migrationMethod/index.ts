@@ -1,3 +1,3 @@
 export default {
-  work_permit: 'ویزا کاری',
+  work_permit: 'Work Permit',
 };
