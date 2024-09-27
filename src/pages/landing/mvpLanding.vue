@@ -63,7 +63,7 @@
 <script setup lang="ts">
 defineOptions({ name: 'MvpLanding' });
 import { useI18n } from 'vue-i18n';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import useMvpService from 'src/services/mvpService';
 import { IImmigo } from 'src/types/pages/mvpService';
 import EmigrantCard from 'src/components/pagesComponent/emigrant/list/emigrantCard.vue';
@@ -79,11 +79,15 @@ const mvpService = useMvpService();
 const hoveredIndex = ref<number>(0);
 const immigoList = ref<IImmigo[]>([]);
 const filters = ref<{ country?: string; gender?: string; migrationMethod?: string }>({});
-const migrationMethodList = ref<{ label: string; value: string }[]>([{ label: t('work_permit'), value: 'workPermit' }]);
-const countryList = ref<{ label: string; value: string }[]>([{ label: t('canada'), value: 'canada' }]);
-const genderList = ref<{ label: string; value: string }[]>([
+
+// ------ Computed ------
+const countryList = computed<{ label: string; value: string }[]>(() => [{ label: t('canada'), value: 'canada' }]);
+const genderList = computed<{ label: string; value: string }[]>(() => [
   { label: t('male'), value: 'male' },
   { label: t('female'), value: 'female' },
+]);
+const migrationMethodList = computed<{ label: string; value: string }[]>(() => [
+  { label: t('work_permit'), value: 'workPermit' },
 ]);
 
 // ------ Services ------
