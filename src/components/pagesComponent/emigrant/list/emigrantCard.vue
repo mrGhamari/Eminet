@@ -1,73 +1,103 @@
 <template>
-  <q-card class="emigrant-card fit q-pa-md q-mt-md" :class="$q.screen.xs ? 'column' : 'row items-start'" bordered flat>
-    <!-- Avatar -->
-    <div class="emigrant-card__avatar" :class="$q.screen.xs ? 'text-center' : 'text-left'">
-      <q-avatar
-        v-if="!PouyaPicture"
-        square
-        size="175px"
-        icon="person"
-        color="primary"
-        text-color="white"
-        class="rounded-borders"
-      />
-      <q-img v-else :src="PouyaPicture" width="175px" height="175px" class="rounded-borders" />
-    </div>
-
-    <!-- Imigo Data -->
-    <div class="column" :class="$q.screen.xs ? 'q-mt-md' : 'col q-pl-md'">
-      <div class="row items-center justify-between">
-        <span class="text-bold text-h6">پارسا بیکی</span>
-        <div class="row items-center">
-          <!-- <span class="text-bold text-h6 q-mr-lg">{{ utility.seprateNumber(500000) }} {{ $t('rial') }}</span> -->
-          <q-btn color="red" dense :icon="liked ? 'favorite-fill' : 'favorite-outline'" flat @click="liked = !liked" />
+  <q-card class="emigrant-card fit q-pa-md column" bordered flat>
+    <div class="row">
+      <!-- Avatar -->
+      <div class="emigrant-card__avatar">
+        <q-avatar
+          v-if="!immigo.user.image"
+          square
+          size="175px"
+          icon="person"
+          color="primary"
+          text-color="white"
+          class="rounded-borders"
+        />
+        <div v-else>
+          <q-img
+            crossorigin="anonymous"
+            :src="'http://192.168.1.144:3000/' + immigo.user.image"
+            width="175px"
+            height="100px"
+            class="rounded-borders"
+          />
         </div>
       </div>
-      <div class="row items-center q-mt-md">
-        <q-icon name="language" size="xs" color="grey-5" />
-        <span class="text-body2 text-grey-6 q-ml-sm">England</span>
-      </div>
-      <div class="row items-center q-my-md">
-        <q-icon name="badge" size="xs" color="grey-5" />
-        <span class="text-body2 text-grey-6 q-ml-sm">WorkPermit</span>
-      </div>
 
-      <div class="row">
-        <div :class="$q.screen.gt.xs ? 'row items-end q-col-gutter-x-md' : ''">
-          <span class="col text-body2 text-justify">
-            سلام من پارسا بیکی هستم خیلی سال هستش که از طریق کون دادن و گی کردن پناهنده شدم امیدوارم بتونم کمکتون کنم در
-            مسیر کون دادن
-          </span>
-          <div class="col-2 column">
+      <!-- Imigo Data -->
+      <div class="col q-ml-md">
+        <div class="row items-center justify-between full-width">
+          <span class="text-bold text-h6">{{ fullName }}</span>
+          <div>
             <q-btn
-              v-if="$q.screen.gt.xs"
-              :label="$t('select')"
-              class="fit"
-              color="primary"
-              text-color="black"
-              no-caps
+              color="red"
+              dense
+              :icon="liked ? 'favorite-fill' : 'favorite-outline'"
+              flat
+              @click="liked = !liked"
             />
-            <q-btn v-if="$q.screen.gt.xs" :label="$t('profile')" class="fit q-mt-md" color="black" no-caps outline />
           </div>
         </div>
+
+        <div class="row items-center q-my-sm">
+          <span class="text-h5">{{ immigo.user.location.country.flag }}</span>
+          <span class="text-body2 text-grey-6 q-ml-sm">{{ countryName }}</span>
+        </div>
+
+        <div>
+          <q-icon name="badge" size="xs" color="grey-5" />
+          <span class="text-body2 text-grey-6 q-ml-sm">{{ $t('work_permit') }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row items-start justify-between q-col-gutter-x-md q-mt-md">
+      <span class="text-body2 text-justify col">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, dolore obcaecati? Animi eveniet tempore,
+        officia atque illo dolore, rerum repudiandae ex dolores ad dolorem earum. Est quidem officia consequatur
+        repudiandae?
+      </span>
+      <div v-if="$q.screen.gt.sm" class="column col-2">
+        <q-btn :label="$t('select')" color="primary" dense no-caps />
+        <q-btn :label="$t('profile')" class="q-mt-sm" color="primary" dense no-caps />
       </div>
     </div>
 
     <!-- Button -->
-    <div v-if="$q.screen.xs" class="fit q-mt-md">
-      <q-btn :label="$t('select')" color="primary" class="fit" no-caps />
-      <q-btn :label="$t('profile')" color="primary" class="fit" no-caps />
+    <div v-if="$q.screen.xs" class="q-mt-md column">
+      <q-btn :label="$t('select')" unelevated color="primary" dense no-caps />
+      <q-btn :label="$t('profile')" unelevated class="q-mt-sm" color="primary" dense no-caps />
     </div>
   </q-card>
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'EmigrantCard' });
-import { ref } from 'vue';
-import PouyaPicture from 'src/assets/images/pouya.jpg';
+import { useQuasar } from 'quasar';
+import { computed, ref, toRefs } from 'vue';
+import { IEmigrantCard } from 'src/types/pages/mvpService';
 // import { useUtility } from 'src/composables/use-utility';
 
 // ------ Variables ------
+const $q = useQuasar();
+
 const liked = ref<boolean>(false);
 // const utility = useUtility();
+
+// ------ Props ------
+const props = defineProps<IEmigrantCard>();
+const { immigo } = toRefs(props);
+
+// ------ Computed ------
+const fullName = computed<string>(() => immigo.value.user.firstName + immigo.value.user.lastName);
+const countryName = computed<string>(() =>
+  $q.lang.rtl ? immigo.value.user.location.country.name_fa : immigo.value.user.location.country.name_en
+);
 </script>
+
+<style lang="scss">
+.emigrant-card {
+  &__avatar {
+    width: fit-content;
+  }
+}
+</style>
