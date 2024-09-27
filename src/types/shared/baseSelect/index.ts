@@ -1,10 +1,10 @@
 export interface IBaseSelect {
-  rules: any[];
+  rules?: any[];
   label?: string;
-  disable: boolean;
+  disable?: boolean;
   options: any[];
-  optionLabel: string;
-  optionValue: string;
+  optionLabel?: string;
+  optionValue?: string;
   isMultiple?: boolean;
   placeholder?: string;
   mapOption?: boolean;
