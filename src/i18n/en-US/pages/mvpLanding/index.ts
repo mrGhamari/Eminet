@@ -4,4 +4,5 @@ export default {
   gender: 'Gender',
   submit: 'Submit',
   profile: 'Profile',
+  cancel: 'Cancel',
 };

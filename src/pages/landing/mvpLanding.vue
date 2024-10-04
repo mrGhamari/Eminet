@@ -45,7 +45,11 @@
         <div class="column q-mb-sm">
           <div v-for="(item, index) in immigoList" :key="index" class="row q-col-gutter-md q-mt-md">
             <div class="col">
-              <Emigrant-card @mouseover="() => (hoveredIndex = index)" :immigo="item" />
+              <Emigrant-card
+                :class="index === 1 ? 'emigrant-card' : ''"
+                @mouseover="hoverEmigrant(index)"
+                :immigo="item"
+              />
             </div>
 
             <div class="col-4" v-if="$q.screen.gt.sm">
@@ -77,7 +81,34 @@ const { t } = useI18n();
 const mvpService = useMvpService();
 // Data
 const hoveredIndex = ref<number>(0);
-const immigoList = ref<IImmigo[]>([]);
+const immigoList = ref<IImmigo[]>([
+  {
+    user: {
+      image: 'string',
+      lastName: 'string',
+      firstName: 'string',
+      biography: 'string',
+
+      location: {
+        town: {
+          name_en: 'string',
+          name_fa: 'string',
+        },
+        country: {
+          flag: 'string',
+          name_en: 'string',
+          name_fa: 'string',
+        },
+      },
+    },
+    _id: 'string',
+    price: 0,
+    days: [0, 1, 2, 3],
+    length: 0,
+    status: 'string',
+    platforms: ['string'],
+  },
+]);
 const filters = ref<{ country?: string; gender?: string; migrationMethod?: string }>({});
 
 // ------ Computed ------
@@ -90,6 +121,9 @@ const migrationMethodList = computed<{ label: string; value: string }[]>(() => [
   { label: t('work_permit'), value: 'workPermit' },
 ]);
 
+// ------ Methods ------
+const hoverEmigrant = (index: number) => (hoveredIndex.value = index);
+
 // ------ Services ------
 const getAllImmigo = async () => {
   try {
@@ -98,3 +132,11 @@ const getAllImmigo = async () => {
   } catch (e) {}
 };
 </script>
+
+<style lang="scss">
+.mvp-landing {
+  .emigrant-card {
+    border: 2px solid black;
+  }
+}
+</style>

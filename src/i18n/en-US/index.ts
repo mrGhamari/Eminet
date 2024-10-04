@@ -6,8 +6,10 @@ import mvpLandingEn from 'src/i18n/en-US/pages/mvpLanding';
 import countryListEn from 'src/i18n/en-US/shared/countryList';
 import genderEn from 'src/i18n/en-US/shared/gender';
 import migrationMethodEn from 'src/i18n/en-US/shared/migrationMethod';
+import daysEn from 'src/i18n/en-US/shared/days';
 
 export default {
+  ...daysEn,
   ...genderEn,
   ...mvpLandingEn,
   ...countryListEn,

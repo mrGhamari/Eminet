@@ -6,7 +6,9 @@ import dashboardTransalteFA from 'src/i18n/fa-IR/pages/dashboard';
 import emigrantListTranslateFA from 'src/i18n/fa-IR/pages/emigrantList';
 import genderFa from 'src/i18n/fa-IR/shared/gender';
 import migrationMethodFa from 'src/i18n/fa-IR/shared/migrationMethod';
+import daysFa from 'src/i18n/fa-IR/shared/days';
 export default {
+  ...daysFa,
   ...genderFa,
   ...countryListFa,
   ...mvpLandingFa,

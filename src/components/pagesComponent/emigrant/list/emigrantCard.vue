@@ -1,5 +1,5 @@
 <template>
-  <q-card class="emigrant-card fit q-pa-md column" bordered flat>
+  <q-card class="emigrant-card-wrapper fit q-pa-md column" bordered flat>
     <div class="row">
       <!-- Avatar -->
       <div class="emigrant-card__avatar">
@@ -17,7 +17,7 @@
             crossorigin="anonymous"
             :src="'http://192.168.1.144:3000/' + immigo.user.image"
             width="175px"
-            height="100px"
+            height="150px"
             class="rounded-borders"
           />
         </div>
@@ -49,25 +49,31 @@
         </div>
       </div>
     </div>
-
     <div class="row items-start justify-between q-col-gutter-x-md q-mt-md">
       <span class="text-body2 text-justify col">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora, dolore obcaecati? Animi eveniet tempore,
-        officia atque illo dolore, rerum repudiandae ex dolores ad dolorem earum. Est quidem officia consequatur
-        repudiandae?
+        {{ immigo.user.biography }}
       </span>
-      <div v-if="$q.screen.gt.sm" class="column col-2">
-        <q-btn :label="$t('select')" color="primary" dense no-caps />
-        <q-btn :label="$t('profile')" class="q-mt-sm" color="primary" dense no-caps />
+      <div class="column col-2">
+        <q-btn
+          :label="$t('select')"
+          color="primary"
+          class="text-black"
+          dense
+          no-caps
+          @click="openScheduleModal"
+          style="border: 1px solid black"
+        />
+        <q-btn :label="$t('profile')" outline class="q-mt-sm" color="primary" dense no-caps />
       </div>
     </div>
 
     <!-- Button -->
     <div v-if="$q.screen.xs" class="q-mt-md column">
-      <q-btn :label="$t('select')" unelevated color="primary" dense no-caps />
+      <q-btn :label="$t('select')" unelevated color="primary" dense no-caps @click="openScheduleModal" />
       <q-btn :label="$t('profile')" unelevated class="q-mt-sm" color="primary" dense no-caps />
     </div>
   </q-card>
+  <scheduleModal v-model:show-modal="showScheduleModal" :key="$q.lang.isoName" />
 </template>
 
 <script setup lang="ts">
@@ -75,12 +81,14 @@ defineOptions({ name: 'EmigrantCard' });
 import { useQuasar } from 'quasar';
 import { computed, ref, toRefs } from 'vue';
 import { IEmigrantCard } from 'src/types/pages/mvpService';
+import scheduleModal from 'src/components/pagesComponent/emigrant/list/scheduleModal.vue';
 // import { useUtility } from 'src/composables/use-utility';
 
 // ------ Variables ------
 const $q = useQuasar();
 
 const liked = ref<boolean>(false);
+const showScheduleModal = ref<boolean>(true);
 // const utility = useUtility();
 
 // ------ Props ------
@@ -88,14 +96,17 @@ const props = defineProps<IEmigrantCard>();
 const { immigo } = toRefs(props);
 
 // ------ Computed ------
-const fullName = computed<string>(() => immigo.value.user.firstName + immigo.value.user.lastName);
+const fullName = computed<string>(() => immigo.value.user.firstName + ' ' + immigo.value.user.lastName);
 const countryName = computed<string>(() =>
   $q.lang.rtl ? immigo.value.user.location.country.name_fa : immigo.value.user.location.country.name_en
 );
+
+// ------ Methods ------
+const openScheduleModal = () => (showScheduleModal.value = true);
 </script>
 
 <style lang="scss">
-.emigrant-card {
+.emigrant-card-wrapper {
   &__avatar {
     width: fit-content;
   }
