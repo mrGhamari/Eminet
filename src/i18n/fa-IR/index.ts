@@ -7,8 +7,10 @@ import emigrantListTranslateFA from 'src/i18n/fa-IR/pages/emigrantList';
 import genderFa from 'src/i18n/fa-IR/shared/gender';
 import migrationMethodFa from 'src/i18n/fa-IR/shared/migrationMethod';
 import daysFa from 'src/i18n/fa-IR/shared/days';
+import formsFA from 'src/i18n/fa-IR/shared/forms';
 export default {
   ...daysFa,
+  ...formsFA,
   ...genderFa,
   ...countryListFa,
   ...mvpLandingFa,

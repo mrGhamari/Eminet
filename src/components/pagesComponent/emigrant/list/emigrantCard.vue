@@ -15,7 +15,7 @@
         <div v-else>
           <q-img
             crossorigin="anonymous"
-            :src="'http://192.168.1.144:3000/' + immigo.user.image"
+            :src="'http://192.168.93.240:3000/' + immigo.user.image"
             width="175px"
             height="150px"
             class="rounded-borders"
@@ -27,6 +27,7 @@
       <div class="col q-ml-md">
         <div class="row items-center justify-between full-width">
           <span class="text-bold text-h6">{{ fullName }}</span>
+          <div><s>10$</s> 0$</div>
           <div>
             <q-btn
               color="red"
@@ -60,7 +61,7 @@
           class="text-black"
           dense
           no-caps
-          @click="openScheduleModal"
+          @click="openScheduleModal(immigo)"
           style="border: 1px solid black"
         />
         <q-btn :label="$t('profile')" outline class="q-mt-sm" color="primary" dense no-caps />
@@ -69,27 +70,42 @@
 
     <!-- Button -->
     <div v-if="$q.screen.xs" class="q-mt-md column">
-      <q-btn :label="$t('select')" unelevated color="primary" dense no-caps @click="openScheduleModal" />
+      <q-btn :label="$t('select')" unelevated color="primary" dense no-caps @click="openScheduleModal(immigo)" />
       <q-btn :label="$t('profile')" unelevated class="q-mt-sm" color="primary" dense no-caps />
     </div>
   </q-card>
-  <scheduleModal v-model:show-modal="showScheduleModal" :key="$q.lang.isoName" />
+  <scheduleModal
+    v-model:show-modal="showScheduleModal"
+    :schedule="scheduleList"
+    :immigo="selectedImmigo"
+    :key="$q.lang.isoName"
+  />
 </template>
 
 <script setup lang="ts">
 defineOptions({ name: 'EmigrantCard' });
 import { useQuasar } from 'quasar';
 import { computed, ref, toRefs } from 'vue';
-import { IEmigrantCard } from 'src/types/pages/mvpService';
+import { IEmigrantCard, IImmigo } from 'src/types/pages/mvpService';
 import scheduleModal from 'src/components/pagesComponent/emigrant/list/scheduleModal.vue';
-// import { useUtility } from 'src/composables/use-utility';
+import useMvpService from 'src/services/mvpService';
+import { useConst } from 'src/composables/use-const';
+import { useUtility } from 'src/composables/use-utility';
+import { useI18n } from 'vue-i18n';
+import { useNotify } from 'src/composables/use-notify';
 
 // ------ Variables ------
 const $q = useQuasar();
-
+const { t } = useI18n();
+const notify = useNotify();
+const mvpService = useMvpService();
 const liked = ref<boolean>(false);
-const showScheduleModal = ref<boolean>(true);
+const scheduleList = ref();
+const constCompose = useConst();
+const utility = useUtility();
+const showScheduleModal = ref<boolean>(false);
 // const utility = useUtility();
+const selectedImmigo = ref<IImmigo>();
 
 // ------ Props ------
 const props = defineProps<IEmigrantCard>();
@@ -102,7 +118,23 @@ const countryName = computed<string>(() =>
 );
 
 // ------ Methods ------
-const openScheduleModal = () => (showScheduleModal.value = true);
+const openScheduleModal = async (immigo: IImmigo) => {
+  selectedImmigo.value = immigo;
+  try {
+    const response = await mvpService.getAllScheduleImmigo(immigo._id);
+    scheduleList.value = response
+      .filter((item) => item.status == 'CREATED')
+      .map((item) => ({
+        label: `${t(constCompose.daysConvertor(item.day))}(${utility.convertGeorgianDateToJalali(item.date)}): ${
+          item.from
+        } - ${item.to}`,
+        value: `${item._id}|${item.date}`,
+      }));
+    showScheduleModal.value = true;
+  } catch {
+    notify.error("error : can't oepn modal");
+  }
+};
 </script>
 
 <style lang="scss">

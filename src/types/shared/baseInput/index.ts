@@ -21,7 +21,7 @@ export interface IBaseInput {
   bgColor?: string;
   standout?: boolean;
   outlined?: boolean;
-  maxLength?: number;
+  maxLength?: string | number;
   required?: boolean;
   isSearch?: boolean;
   readonly?: boolean;

@@ -4,4 +4,6 @@ export default {
   gender: 'جنسیت',
   submit: 'تایید',
   cancel: 'انصراف',
+  select_schedule: 'انتخاب بازه',
+  contact_form: 'فرم تماس',
 };

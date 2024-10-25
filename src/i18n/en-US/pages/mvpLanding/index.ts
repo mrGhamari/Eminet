@@ -5,4 +5,6 @@ export default {
   submit: 'Submit',
   profile: 'Profile',
   cancel: 'Cancel',
+  select_schedule: 'Select Schedule',
+  contact_form: 'Contact From',
 };

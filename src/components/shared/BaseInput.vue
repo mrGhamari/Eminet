@@ -1,15 +1,16 @@
 <template>
   <div class="base-input-wrapper">
-    <div class="base-input-wrapper__label">
+    <!-- <div class="base-input-wrapper__label">
       <label>
         {{ label }}
         <span v-if="required" class="text-negative"> * </span>
       </label>
-    </div>
+    </div> -->
 
     <div class="base-input-wrapper__input">
       <q-input
         dense
+        :label="label"
         outlined
         lazy-rules
         :rules="rules"
