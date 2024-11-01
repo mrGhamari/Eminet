@@ -100,6 +100,14 @@ const immigoList = ref<IImmigo[]>([
           name_fa: 'string',
         },
       },
+      media_assets: {
+        image_path: '',
+        video_path: '',
+      },
+      visaTypeId: {
+        name_en: '',
+        name_fa: '',
+      },
     },
     _id: 'string',
     price: 0,

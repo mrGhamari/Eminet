@@ -4,9 +4,9 @@
       <!-- Avatar -->
       <div class="emigrant-card__avatar">
         <q-avatar
-          v-if="!immigo.user.image"
+          v-if="!immigo.user.media_assets.image_path"
           square
-          size="175px"
+          size="200px"
           icon="person"
           color="primary"
           text-color="white"
@@ -15,9 +15,9 @@
         <div v-else>
           <q-img
             crossorigin="anonymous"
-            :src="'http://192.168.93.240:3000/' + immigo.user.image"
-            width="175px"
-            height="150px"
+            :src="'http://192.168.1.144:3000/' + immigo.user.media_assets.image_path"
+            width="200px"
+            height="200px"
             class="rounded-borders"
           />
         </div>
@@ -26,9 +26,13 @@
       <!-- Imigo Data -->
       <div class="col q-ml-md">
         <div class="row items-center justify-between full-width">
-          <span class="text-bold text-h6">{{ fullName }}</span>
-          <div><s>10$</s> 0$</div>
-          <div>
+          <div class="row items-center">
+            <span class="text-bold text-h6">{{ fullName }}</span>
+            <q-icon name="verified" color="blue" size="sm" class="q-ml-sm" />
+          </div>
+
+          <div class="row items-center">
+            <div class="text-h6 text-bold q-mr-lg">New</div>
             <q-btn
               color="red"
               dense
@@ -39,21 +43,46 @@
           </div>
         </div>
 
-        <div class="row items-center q-my-sm">
+        <div class="row items-center">
           <span class="text-h5">{{ immigo.user.location.country.flag }}</span>
           <span class="text-body2 text-grey-6 q-ml-sm">{{ countryName }}</span>
         </div>
 
-        <div>
+        <div class="q-my-sm">
           <q-icon name="badge" size="xs" color="grey-5" />
-          <span class="text-body2 text-grey-6 q-ml-sm">{{ $t('work_permit') }}</span>
+          <span class="text-body2 text-grey-6 q-ml-sm">{{ $t('work_permit') }}/ Developer</span>
+        </div>
+        <div>
+          <q-icon name="interpreter_mode" size="xs" color="grey-5" />
+          <span class="text-body2 text-grey-6 q-ml-sm">32 active student</span>
+        </div>
+        <div class="row items-end justify-between q-col-gutter-x-md q-mt-md">
+          <span class="text-body2 text-justify col">
+            {{ showFullImmigoDescription ? immigo.user.biography : immigo.user.biography.substring(0, 150) }}
+            <q-btn
+              :label="showFullImmigoDescription ? 'close' : 'Read More'"
+              color="primary"
+              flat
+              dense
+              @click="showFullImmigoDescription = !showFullImmigoDescription"
+            />
+          </span>
+          <div v-if="$q.screen.gt.xs" class="column col-5">
+            <q-btn
+              :label="$t('select')"
+              color="primary"
+              class="text-black"
+              dense
+              no-caps
+              @click="openScheduleModal(immigo)"
+              style="border: 1px solid black"
+            />
+            <q-btn :label="$t('profile')" outline class="q-mt-sm" color="primary" dense no-caps />
+          </div>
         </div>
       </div>
     </div>
-    <div class="row items-start justify-between q-col-gutter-x-md q-mt-md">
-      <span class="text-body2 text-justify col">
-        {{ immigo.user.biography }}
-      </span>
+    <!-- <div class="row items-start justify-end q-mt-md">
       <div class="column col-2">
         <q-btn
           :label="$t('select')"
@@ -66,7 +95,7 @@
         />
         <q-btn :label="$t('profile')" outline class="q-mt-sm" color="primary" dense no-caps />
       </div>
-    </div>
+    </div> -->
 
     <!-- Button -->
     <div v-if="$q.screen.xs" class="q-mt-md column">
@@ -106,6 +135,7 @@ const utility = useUtility();
 const showScheduleModal = ref<boolean>(false);
 // const utility = useUtility();
 const selectedImmigo = ref<IImmigo>();
+const showFullImmigoDescription = ref<boolean>(false);
 
 // ------ Props ------
 const props = defineProps<IEmigrantCard>();
