@@ -18,6 +18,8 @@ interface IUser {
   lastName: string;
   firstName: string;
   location: ILocation;
+  visaTypeId: IvisaTypeId;
+  media_assets: IMediaAssets;
 }
 
 interface ILocation {
@@ -32,4 +34,14 @@ interface ICountry {
   flag: string;
   name_en: string;
   name_fa: string;
+}
+
+interface IMediaAssets {
+  image_path: string;
+  video_path: string;
+}
+
+interface IvisaTypeId {
+  name_fa: string;
+  name_en: string;
 }
