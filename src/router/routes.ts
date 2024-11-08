@@ -11,6 +11,7 @@ import LandingLayout from 'src/layouts/landingLayout.vue';
 
 //! ------ Main Routes ------
 import MainLayout from 'src/layouts/mainLayout.vue';
+import checkoutPage from 'src/pages/checkout/checkoutPage.vue';
 import Emigrants from 'pages/emigrant/list/emigrantListPage.vue';
 
 const routes: RouteRecordRaw[] = [
@@ -34,6 +35,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       // { name: 'Landing', path: '/', component: LandingPage },
       { name: 'MvpLanding', path: '/', component: mvpLanding },
+      { name: 'Checkout', path: '/checkout/:token', component: checkoutPage },
     ],
   },
 

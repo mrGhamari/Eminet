@@ -7,4 +7,6 @@ export default {
   cancel: 'Cancel',
   select_schedule: 'Select Schedule',
   contact_form: 'Contact From',
+  new: 'New',
+  counseling_session: 'Counseling session',
 };

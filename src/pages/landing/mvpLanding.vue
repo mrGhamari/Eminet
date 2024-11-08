@@ -42,19 +42,23 @@
         </div>
 
         <!-- Emigrant Card -->
-        <div class="column q-mb-sm">
-          <div v-for="(item, index) in immigoList" :key="index" class="row q-col-gutter-md q-mt-md">
-            <div class="col">
-              <Emigrant-card
-                :class="index === 1 ? 'emigrant-card' : ''"
-                @mouseover="hoverEmigrant(index)"
-                :immigo="item"
-              />
+        <div class="mvp-landing__emigrant-section column q-mb-sm">
+          <div v-for="(item, index) in immigoList" :key="index" class="row q-col-gutter-x-md q-mt-md">
+            <div
+              class="col rounded-borders"
+              :class="index === hoveredIndex ? 'hovered-card' : 'border-card'"
+              @mouseover="hoverEmigrant(index)"
+            >
+              <Emigrant-card :immigo="item" style="border: 10px solid black !important" />
             </div>
 
             <div class="col-4" v-if="$q.screen.gt.sm">
               <q-card v-if="index == hoveredIndex" class="full-height">
-                <q-video :ratio="16 / 9" class="full-height" src="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0" />
+                <q-video
+                  :ratio="16 / 9"
+                  class="full-height"
+                  :src="'http://192.168.1.144:3000/' + item.user.media_assets.video_path"
+                />
               </q-card>
             </div>
           </div>
@@ -79,44 +83,11 @@ onMounted(async () => await getAllImmigo());
 // Compose
 const { t } = useI18n();
 const mvpService = useMvpService();
+
 // Data
 const hoveredIndex = ref<number>(0);
-const immigoList = ref<IImmigo[]>([
-  {
-    user: {
-      image: 'string',
-      lastName: 'string',
-      firstName: 'string',
-      biography: 'string',
-
-      location: {
-        town: {
-          name_en: 'string',
-          name_fa: 'string',
-        },
-        country: {
-          flag: 'string',
-          name_en: 'string',
-          name_fa: 'string',
-        },
-      },
-      media_assets: {
-        image_path: '',
-        video_path: '',
-      },
-      visaTypeId: {
-        name_en: '',
-        name_fa: '',
-      },
-    },
-    _id: 'string',
-    price: 0,
-    days: [0, 1, 2, 3],
-    length: 0,
-    status: 'string',
-    platforms: ['string'],
-  },
-]);
+const immigoList = ref<IImmigo[]>([]);
+const baseUrl = ref(process.env.BASE_URL);
 const filters = ref<{ country?: string; gender?: string; migrationMethod?: string }>({});
 
 // ------ Computed ------
@@ -130,7 +101,10 @@ const migrationMethodList = computed<{ label: string; value: string }[]>(() => [
 ]);
 
 // ------ Methods ------
-const hoverEmigrant = (index: number) => (hoveredIndex.value = index);
+const hoverEmigrant = (index: number) => {
+  hoveredIndex.value = index;
+  console.log(hoveredIndex.value);
+};
 
 // ------ Services ------
 const getAllImmigo = async () => {
@@ -143,8 +117,13 @@ const getAllImmigo = async () => {
 
 <style lang="scss">
 .mvp-landing {
-  .emigrant-card {
-    border: 2px solid black;
+  &__emigrant-section {
+    .hovered-card {
+      border: 2px solid black !important;
+    }
+    .border-card {
+      border: 1px solid #fafafa;
+    }
   }
 }
 </style>

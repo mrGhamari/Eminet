@@ -1,5 +1,5 @@
 <template>
-  <q-card class="emigrant-card-wrapper fit q-pa-md column" bordered flat>
+  <q-card class="emigrant-card-wrapper fit q-pa-md column" flat>
     <div class="row">
       <!-- Avatar -->
       <div class="emigrant-card__avatar">
@@ -32,7 +32,7 @@
           </div>
 
           <div class="row items-center">
-            <div class="text-h6 text-bold q-mr-lg">New</div>
+            <div class="text-h6 text-bold q-mr-lg">{{ $t('new') }}</div>
             <q-btn
               color="red"
               dense
@@ -50,15 +50,17 @@
 
         <div class="q-my-sm">
           <q-icon name="badge" size="xs" color="grey-5" />
-          <span class="text-body2 text-grey-6 q-ml-sm">{{ $t('work_permit') }}/ Developer</span>
+          <span class="text-body2 text-grey-6 q-ml-sm"
+            >{{ $t('work_permit') }}/ {{ immigo.user.visaTypeId.name_fa }}</span
+          >
         </div>
         <div>
           <q-icon name="interpreter_mode" size="xs" color="grey-5" />
-          <span class="text-body2 text-grey-6 q-ml-sm">32 active student</span>
+          <span class="text-body2 text-grey-6 q-ml-sm">۳۲ {{ $t('counseling_session') }}</span>
         </div>
         <div class="row items-end justify-between q-col-gutter-x-md q-mt-md">
           <span class="text-body2 text-justify col">
-            {{ showFullImmigoDescription ? immigo.user.biography : immigo.user.biography.substring(0, 150) }}
+            {{ immigoBiography }}
             <q-btn
               :label="showFullImmigoDescription ? 'close' : 'Read More'"
               color="primary"
@@ -82,20 +84,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="row items-start justify-end q-mt-md">
-      <div class="column col-2">
-        <q-btn
-          :label="$t('select')"
-          color="primary"
-          class="text-black"
-          dense
-          no-caps
-          @click="openScheduleModal(immigo)"
-          style="border: 1px solid black"
-        />
-        <q-btn :label="$t('profile')" outline class="q-mt-sm" color="primary" dense no-caps />
-      </div>
-    </div> -->
 
     <!-- Button -->
     <div v-if="$q.screen.xs" class="q-mt-md column">
@@ -115,26 +103,32 @@
 defineOptions({ name: 'EmigrantCard' });
 import { useQuasar } from 'quasar';
 import { computed, ref, toRefs } from 'vue';
-import { IEmigrantCard, IImmigo } from 'src/types/pages/mvpService';
+import { IEmigrantCard, IImmigo, ISchedule } from 'src/types/pages/mvpService';
 import scheduleModal from 'src/components/pagesComponent/emigrant/list/scheduleModal.vue';
 import useMvpService from 'src/services/mvpService';
 import { useConst } from 'src/composables/use-const';
-import { useUtility } from 'src/composables/use-utility';
-import { useI18n } from 'vue-i18n';
+// import { useUtility } from 'src/composables/use-utility';
+// import { useI18n } from 'vue-i18n';
 import { useNotify } from 'src/composables/use-notify';
+import { useI18n } from 'vue-i18n';
 
 // ------ Variables ------
+// compose
 const $q = useQuasar();
+// const t = useI18n();
 const { t } = useI18n();
 const notify = useNotify();
-const mvpService = useMvpService();
-const liked = ref<boolean>(false);
-const scheduleList = ref();
-const constCompose = useConst();
-const utility = useUtility();
-const showScheduleModal = ref<boolean>(false);
 // const utility = useUtility();
+const constCompose = useConst();
+const mvpService = useMvpService();
+
+// Data
+const baseUrl = ref(process.env.BASE_URL);
+const mockSchedule = ref<ISchedule[]>([]);
+const scheduleList = ref();
+const liked = ref<boolean>(false);
 const selectedImmigo = ref<IImmigo>();
+const showScheduleModal = ref<boolean>(false);
 const showFullImmigoDescription = ref<boolean>(false);
 
 // ------ Props ------
@@ -146,6 +140,9 @@ const fullName = computed<string>(() => immigo.value.user.firstName + ' ' + immi
 const countryName = computed<string>(() =>
   $q.lang.rtl ? immigo.value.user.location.country.name_fa : immigo.value.user.location.country.name_en
 );
+const immigoBiography = computed(() =>
+  showFullImmigoDescription.value ? immigo.value.user.biography : immigo.value.user.biography.substring(0, 150)
+);
 
 // ------ Methods ------
 const openScheduleModal = async (immigo: IImmigo) => {
@@ -154,12 +151,13 @@ const openScheduleModal = async (immigo: IImmigo) => {
     const response = await mvpService.getAllScheduleImmigo(immigo._id);
     scheduleList.value = response
       .filter((item) => item.status == 'CREATED')
-      .map((item) => ({
-        label: `${t(constCompose.daysConvertor(item.day))}(${utility.convertGeorgianDateToJalali(item.date)}): ${
-          item.from
-        } - ${item.to}`,
-        value: `${item._id}|${item.date}`,
-      }));
+      .reduce((acc: ISchedule[], { date, day, _id, status, from, to }) => {
+        (
+          acc.find((item) => item.date === date) ||
+          acc[acc.push({ _id, status, date, day: t(constCompose.daysConvertor(day)), schedule: [] }) - 1]
+        ).schedule.push({ from, to, date: date, timeId: _id });
+        return acc;
+      }, []);
     showScheduleModal.value = true;
   } catch {
     notify.error("error : can't oepn modal");

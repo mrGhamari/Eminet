@@ -1,5 +1,5 @@
 <template>
-  <div class="base-select-wrapper fit">
+  <div class="base-select-wrapper">
     <q-select
       :label="label"
       dense

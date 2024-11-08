@@ -6,4 +6,6 @@ export default {
   cancel: 'انصراف',
   select_schedule: 'انتخاب بازه',
   contact_form: 'فرم تماس',
+  new: 'جدید',
+  counseling_session: 'جلسه مشاوره',
 };

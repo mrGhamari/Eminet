@@ -45,3 +45,23 @@ interface IvisaTypeId {
   name_fa: string;
   name_en: string;
 }
+
+export interface ISchedule {
+  date: string;
+  _id: string;
+  from: string;
+  to: string;
+  day: number | string;
+  status: string;
+  room: IRoomSchedule;
+  schedule?: {
+    from: string;
+    to: string;
+  }[];
+}
+
+interface IRoomSchedule {
+  _id: string;
+  price: number;
+  length: number;
+}
